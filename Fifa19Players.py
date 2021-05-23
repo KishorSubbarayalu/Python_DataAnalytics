@@ -117,10 +117,10 @@ Best_finishers = leftFootPlayers[['ID','Club','Finishing','Name']]
 Best_finishers = Best_finishers.set_index(['ID'])
 
 
-# In[88]:
+# In[708]:
 
 
-Best_finishers
+Best_finishers.head()
 
 
 # In[93]:
@@ -190,10 +190,10 @@ Best_finishers.drop(labels = ['Club_y'], axis = 1, inplace = True)
 Best_finishers.rename(columns = {'Club_x':'Club'}, inplace = True)
 
 
-# In[137]:
+# In[709]:
 
 
-Best_finishers # Best Finishers of left foot players in 2019
+Best_finishers.head() # Best Finishers of left foot players in 2019
 
 
 # ### 2. Categorize the players based on their finishing and show the count for each category using seaborn
@@ -527,6 +527,179 @@ sb.barplot(x = "Club",
             palette = 'deep')
 
 plt.show()
+
+
+# ### 4. Find the strength of association between players age and overall performance and use scatter plot to display them
+
+# In[710]:
+
+
+fifaplayers_copy2 = master_data.copy()
+fifaplayers_copy2.head()
+
+
+# In[711]:
+
+
+# Creating a dataframe with age and performance columns
+age_performance = fifaplayers_copy2[['Age','Overall','Potential']]
+
+
+# In[717]:
+
+
+age_performance.head()
+
+
+# In[715]:
+
+
+#Check for null values
+age_performance.isnull().sum()
+
+
+# In[714]:
+
+
+#Plotting the age distribution among players
+plt.subplots(figsize=(12,6))
+
+sb.distplot(age_performance["Age"],
+             bins = 29,
+             kde = False)
+
+plt.show()
+
+
+# In[718]:
+
+
+# Creating age slabs
+for row_index,row in age_performance.iterrows():
+    if row.Age >= 35:
+        age_performance.loc[row_index,'AgeGroup'] = 'Seniors'
+    elif (row.Age >= 25) & (row.Age < 35) :
+        age_performance.loc[row_index,'AgeGroup'] = 'Adults'
+    elif (row.Age >= 20) & (row.Age < 25) :
+        age_performance.loc[row_index,'AgeGroup'] = 'Youth'
+    else:
+        age_performance.loc[row_index,'AgeGroup'] = 'YoungLads'
+
+
+# In[721]:
+
+
+age_performance.AgeGroup.unique()
+
+
+# In[731]:
+
+
+with sb.axes_style("darkgrid"): #The darker hexagon represents the high density
+    
+    sb.jointplot('Age',
+                  'Overall',
+                   data = age_performance,
+                   kind = 'hex',
+                   color = 'r')
+    
+plt.show()
+
+
+# In[726]:
+
+
+sb.jointplot('Age',
+                  'Overall',
+                   data = age_performance,
+                   color = 'g')
+plt.show()
+
+
+# In[728]:
+
+
+sb.pairplot(age_performance,
+             height = 4,
+             vars = ["Age",
+                     "Overall",
+                     "Potential"],
+             diag_kind = "kde")
+
+plt.show()
+
+
+# In[741]:
+
+
+#Plotting the box plot based on age groups
+plt.subplots(figsize = (15,8))
+
+sb.boxplot(x = "AgeGroup",
+            y = "Overall",
+            data = age_performance)
+
+plt.show()
+
+
+# In[749]:
+
+
+age_performance.describe()
+
+
+# In[767]:
+
+
+stat = ['count','mean','std','min','25%','50%','75%','max']
+
+
+# In[768]:
+
+
+age_performance_stat = pd.DataFrame(age_performance.describe())
+
+
+# In[769]:
+
+
+age_performance_stat.reset_index(drop = True)
+
+
+# In[770]:
+
+
+age_performance_stat['StatisticalParameters'] = stat
+
+
+# In[771]:
+
+
+age_performance_stat.shape
+
+
+# In[777]:
+
+
+age_performance_stat = age_performance_stat.reset_index(drop = True)
+
+
+# In[783]:
+
+
+age_performance_stat = age_performance_stat.loc[1:,:]
+
+
+# In[784]:
+
+
+age_performance_stat
+
+
+# In[785]:
+
+
+age_performance_stat.plot(x='StatisticalParameters',y=['Age','Overall','Potential'], kind = 'bar')
 
 
 # In[ ]:
