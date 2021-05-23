@@ -21,6 +21,7 @@
 2. Categorize the players based on their finishing and show the count for each category using seaborn
 3. Top 7 Economical Club, Richest Club, Clubs paying the high wages to their players
 4. Find the strength of association between players age and overall performance and use scatter plot to display them
+5. Top 10 distribution of nations based on number of players
 
 ### <span style="color:Green">Solutions</span>
 :::info
@@ -52,7 +53,7 @@ matplotlib -> Data visulaization, however matplotlib shall be used to configure 
 
 *Top 7 Economical Club, Richest Club, Clubs paying the high wages to their players:*
 - This is very interesting task where we had to do few data cleaning.
-- As we plot will be more inclined to each club, we will remove the rows if any player has no information regarding their club
+- As the plot will be more inclined to each club, we will remove the rows if any player has no information regarding their club
 ![](https://i.imgur.com/bVvw3XK.png)
 - Secondly, the data type of the columns value and wages are object(i.e.string). We can't perform mathematical functions such as summation, count with this data type. Hence we need to perform some cleaning and convert the data type
 - Before Cleaning
@@ -74,4 +75,9 @@ matplotlib -> Data visulaization, however matplotlib shall be used to configure 
 ![](https://i.imgur.com/FahugxH.png)
 - The above box plot indicates the statistical information based on different age groups
 ![](https://i.imgur.com/w83lP0x.png)
+
+*Top 10 distribution of nations based on number of players:*
+- Rendering this plot is simple, create a dataframe having country names and the number of players for each country using group by clause
+![](https://i.imgur.com/PaElfCh.png)
+
 
