@@ -20,7 +20,6 @@
 1. Find the best left foot finisher in each club
 2. Categorize the players based on their finishing and show the count for each category using seaborn
 3. Top 7 Economical Club, Richest Club, Clubs paying the high wages to their players
-4. Find the strength of association between players age and overall performance and use scatter plot to display them
 
 ### <span style="color:Green">Solutions</span>
 :::info
@@ -66,12 +65,4 @@ matplotlib -> Data visulaization, however matplotlib shall be used to configure 
 ![](https://i.imgur.com/lTsTCPc.png)
 ![](https://i.imgur.com/4RNDLuB.png)
 
-*Find the strength of association between players age and overall performance and use scatter plot to display them:*
- - We choose only age and overall performance metrics of the players to derive this outcome
-![](https://i.imgur.com/5dbykXV.png)
-![](https://i.imgur.com/J4tfV2d.png)
- - The plot above indicates that the players between the ages of 20 and 28 have a high overall ability. Furthermore, we may deduce that since the majority of players begin their careers at this age, their overall score is about 60-70, and they will eventually increase their potential.This information is displayed on the plot, and we can deduce it from the color intensity.
-![](https://i.imgur.com/FahugxH.png)
-- The above box plot indicates the statistical information based on different age groups
-![](https://i.imgur.com/w83lP0x.png)
 
